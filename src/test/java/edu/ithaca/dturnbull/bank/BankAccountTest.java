@@ -24,14 +24,15 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
-        assertFalse(BankAccount.isEmailValid(""));
-        assertFalse(BankAccount.isEmailValid("1@b.com"));
-        assertTrue(BankAccount.isEmailValid("a@bc"));
-        assertFalse(BankAccount.isEmailValid("a@b"));
-        assertTrue(BankAccount.isEmailValid("a-b@c.com"));
-        assertTrue(BankAccount.isEmailValid("a_b@c.com"));
-        assertTrue(BankAccount.isEmailValid("a.b@c.com"));
+        assertTrue(BankAccount.isEmailValid( "a@b.com"));   //valid email
+        assertFalse(BankAccount.isEmailValid(""));  //invalid email - empty
+        assertFalse(BankAccount.isEmailValid("1@b.com"));   //invalid email - only contains digits
+        assertTrue(BankAccount.isEmailValid("a@bc"));   //valid email
+        //***  ^  should this be false?  not sure if ".com/.cc/.org, etc." is required***//
+        assertFalse(BankAccount.isEmailValid("a@b"));   //invalid email - domain should be at least two characters
+        assertTrue(BankAccount.isEmailValid("a-b@c.com"));  //valid email
+        assertTrue(BankAccount.isEmailValid("a_b@c.com"));  //valid email
+        assertTrue(BankAccount.isEmailValid("a.b@c.com"));  //valid email
     }
 
     @Test
