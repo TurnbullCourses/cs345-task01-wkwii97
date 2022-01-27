@@ -52,7 +52,7 @@ public class BankAccount {
             return false;
         } //prob an easier way to do this ^
 
-        //check fr @ and .
+        //check for @ and .
         if (email.indexOf('@') == -1 || email.indexOf(".") == -1){
             return false;
         }
