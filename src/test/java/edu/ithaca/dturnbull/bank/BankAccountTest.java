@@ -19,7 +19,8 @@ class BankAccountTest {
         bankAccount.withdraw(100);
 
         assertEquals(100, bankAccount.getBalance(), 0.001);
-        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); // *Boarder Case* - Insufficient Funds withdrawn 
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100)); // *Boarder Case* - Negative amount is being withdrawn
     }
 
     @Test
@@ -32,7 +33,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid("a-b@c.com"));  //valid email
         assertTrue(BankAccount.isEmailValid("a_b@c.com"));  //valid email
         assertTrue(BankAccount.isEmailValid("a.b@c.com"));  //valid email
-        assertFalse(BankAccount.isEmailValid("#@c.com")); //invalid email - no letters, numbers, underscores, or dashes in the prefix - *Boarder Case*
+        assertFalse(BankAccount.isEmailValid("#@c.com")); //invalid email - speicial char in the prefix - *Boarder Case*
     }
 
     @Test
