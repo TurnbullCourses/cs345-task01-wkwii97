@@ -25,14 +25,14 @@ class BankAccountTest {
     @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   //valid email
-        assertFalse(BankAccount.isEmailValid(""));  //invalid email - empty
-        assertFalse(BankAccount.isEmailValid("1@b.com"));   //invalid email-only contains digits-border case? 1 char off
-        assertFalse(BankAccount.isEmailValid("a@bc"));   //valid email?
-        //***  ^  should this be false?  not sure if ".com/.cc/.org, etc." is required***//
+        assertFalse(BankAccount.isEmailValid(""));  //invalid email - empty 
+        assertFalse(BankAccount.isEmailValid("1@b.com"));   //invalid email-only contains digits
+        assertFalse(BankAccount.isEmailValid("a@bc"));   //invalid email-domain should have .com/.cc/etc - *Boarder case*
         assertFalse(BankAccount.isEmailValid("a@b"));   //invalid email-domain should be at least two characters
         assertTrue(BankAccount.isEmailValid("a-b@c.com"));  //valid email
-        assertTrue(BankAccount.isEmailValid("a_b@c.com"));  //valid email-possibly boarder case since only difference is 1 char
-        assertTrue(BankAccount.isEmailValid("a.b@c.com"));  //valid email-possibly boarder case since only difference is 1 char
+        assertTrue(BankAccount.isEmailValid("a_b@c.com"));  //valid email
+        assertTrue(BankAccount.isEmailValid("a.b@c.com"));  //valid email
+        assertFalse(BankAccount.isEmailValid("#@c.com")); //invalid email - no letters, numbers, underscores, or dashes in the prefix - *Boarder Case*
     }
 
     @Test
