@@ -27,7 +27,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   //valid email
         assertFalse(BankAccount.isEmailValid(""));  //invalid email - empty
         assertFalse(BankAccount.isEmailValid("1@b.com"));   //invalid email-only contains digits-border case? 1 char off
-        assertTrue(BankAccount.isEmailValid("a@bc"));   //valid email?
+        assertFalse(BankAccount.isEmailValid("a@bc"));   //valid email?
         //***  ^  should this be false?  not sure if ".com/.cc/.org, etc." is required***//
         assertFalse(BankAccount.isEmailValid("a@b"));   //invalid email-domain should be at least two characters
         assertTrue(BankAccount.isEmailValid("a-b@c.com"));  //valid email
