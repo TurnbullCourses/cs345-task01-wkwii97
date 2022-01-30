@@ -1,5 +1,7 @@
 package edu.ithaca.dturnbull.bank;
 
+import java.math.BigDecimal;
+
 public class BankAccount {
 
     private String email;
@@ -32,7 +34,15 @@ public class BankAccount {
      * returns true if amount is positive and has 2 decimal points or less, false if otherwise
      */
     public static boolean isAmountValid(double amount){
-        return false;
+        if (amount < 0){
+            return false;
+        }
+        else if (BigDecimal.valueOf(amount).scale() > 2){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     /**
