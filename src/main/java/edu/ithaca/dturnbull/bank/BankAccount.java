@@ -27,6 +27,15 @@ public class BankAccount {
     }
 
     /**
+     * 
+     * @param amount 
+     * returns true if amount is positive and has 2 decimal points or less, false if otherwise
+     */
+    public static boolean isAmountValid(double amount){
+        return false;
+    }
+
+    /**
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      * amount can't be greater than account balance
      * amount can't be a negative value, it must be positive

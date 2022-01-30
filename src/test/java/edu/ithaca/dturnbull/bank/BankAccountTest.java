@@ -50,8 +50,18 @@ class BankAccountTest {
 
         assertEquals("a@b.com", bankAccount.getEmail());
         assertEquals(200, bankAccount.getBalance(), 0.001);
-        //check for exception thrown correctly
+        //check sfor exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+    }
+
+    @Test
+    void isAmountValidTest() {
+
+        assertTrue(BankAccount.isAmountValid(20.00)); // valid amount - positive amount, 2 or less decimal points
+        assertFalse(BankAccount.isAmountValid(-10)); // invalid amount - negative amount *Boarder Case*
+        assertFalse(BankAccount.isAmountValid(5.555)); // invalid amount - more than 2 decimal points *Boarder Case*
+        assertFalse(BankAccount.isAmountValid(-2.231)); // invalid amount - negative amount, more than 2 decimal places 
+
     }
 
 }
