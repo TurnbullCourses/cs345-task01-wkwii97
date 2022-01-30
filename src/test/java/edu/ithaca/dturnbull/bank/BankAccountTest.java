@@ -29,6 +29,8 @@ class BankAccountTest {
         assertEquals(100, bankAccount.getBalance(), 0.001);
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); // *Boarder Case* - Insufficient Funds withdrawn 
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100)); // *Boarder Case* - Negative amount is being withdrawn
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-0.001)); // new test 
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(10.111)); // new test
     }
 
     @Test
@@ -52,6 +54,8 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check sfor exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 20.157)); // new test 
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", -1000.00)); // new test 
     }
 
     @Test
