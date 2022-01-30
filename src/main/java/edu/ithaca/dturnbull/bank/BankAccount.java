@@ -2,7 +2,6 @@ package edu.ithaca.dturnbull.bank;
 
 import java.math.BigDecimal;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI.BasicVerticalLayoutManager;
 
 public class BankAccount {
 
@@ -95,4 +94,41 @@ public class BankAccount {
             return true;
         }
     }
+
+    /**
+     * 
+     * @param amount
+     * @post checks if amount is valid then adds it to balance
+     */
+    public void deposit(double amount){
+        boolean val = isAmountValid(amount);
+        if (val == true){
+            balance += amount;
+        }
+        else {
+            throw new IllegalArgumentException("Error! Invalid Deposit Amount");
+        }
+
+    }
+
+    /**
+     * @param location,amount
+     * @post if amount is valid, will transfer money from current account to location specified by user
+     */
+    public void transfer(BankAccount location, double amount){
+        boolean val = isAmountValid(amount);
+        if (val == true){
+            this.balance -= amount;
+            location.balance += amount;
+        }
+
+        else {
+            throw new IllegalArgumentException("Invalid Amount");
+
+        }
+
+    }
+
+    
+
 }

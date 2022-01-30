@@ -3,8 +3,6 @@ package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.IllegalFormatException;
-
 
 class BankAccountTest {
 
@@ -64,6 +62,47 @@ class BankAccountTest {
         assertFalse(BankAccount.isAmountValid(-10)); // invalid amount - negative amount *Boarder Case*
         assertFalse(BankAccount.isAmountValid(5.555)); // invalid amount - more than 2 decimal points *Boarder Case*
         assertFalse(BankAccount.isAmountValid(-2.231)); // invalid amount - negative amount, more than 2 decimal places 
+
+    }
+
+    @Test
+    void depositTest() {
+        BankAccount bankAccount = new BankAccount("a@b.com", 50);
+
+        bankAccount.deposit(50);
+        assertEquals(100, bankAccount.getBalance()); // valid amount 
+
+        bankAccount.deposit(10.50);
+        assertEquals(110.50, bankAccount.getBalance()); // valid amount 
+
+
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-20)); // invalid deposit - negative amount *Boarder Case*
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(5.555)); // invalid deposit - more than 3 decimal places *Boarder Case*
+    }
+
+    @Test
+    void transferTest() {
+        BankAccount bankAccount = new BankAccount("a@b.com", 50);
+        BankAccount bankAccount2 = new BankAccount("b@c.com", 0);
+
+
+        bankAccount.transfer(bankAccount2, 5);
+        assertEquals(45, bankAccount.getBalance()); // valid amount transferred
+        assertEquals(5, bankAccount2.getBalance());
+        
+        bankAccount.transfer(bankAccount2, 40.50);
+        assertEquals(4.50, bankAccount.getBalance()); // valid amount transferred 
+        assertEquals(45.50, bankAccount2.getBalance());
+        
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.transfer(bankAccount2, -10)); // invalid amount - amount negative *Boarder Case*
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.transfer(bankAccount2, 0.253)); // invalid amount - amount has > 2 decimals *Boarder Case*
+        
+        
+
+
+
+
+
 
     }
 
