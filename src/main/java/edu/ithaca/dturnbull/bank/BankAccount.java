@@ -2,6 +2,8 @@ package edu.ithaca.dturnbull.bank;
 
 import java.math.BigDecimal;
 
+import javax.swing.plaf.basic.BasicSplitPaneUI.BasicVerticalLayoutManager;
+
 public class BankAccount {
 
     private String email;
@@ -11,12 +13,12 @@ public class BankAccount {
      * @throws IllegalArgumentException if email is invalid
      */
     public BankAccount(String email, double startingBalance){
-        if (isEmailValid(email)){
+        if (isEmailValid(email) && isAmountValid(startingBalance)){
             this.email = email;
             this.balance = startingBalance;
         }
         else {
-            throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
+            throw new IllegalArgumentException("Email address or starting balance is invalid, cannot create account");
         }
     }
 
@@ -51,15 +53,18 @@ public class BankAccount {
      * amount can't be a negative value, it must be positive
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if(amount < 0){
-            throw new IllegalArgumentException("Error, negative amount can't be withdrawn");
-        }
-        
-        else if (amount <= balance){
-            balance -= amount;
+        boolean val = isAmountValid(amount);
+        if(val == true){
+            if(amount < balance){
+                balance -= amount;
+            }
+            else {
+                throw new InsufficientFundsException("Invalid amount");
+            }
+            
         }
         else {
-            throw new InsufficientFundsException("Not enough money");
+            throw new IllegalArgumentException("Amount invalid");
         }
     }
 

@@ -3,6 +3,8 @@ package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.IllegalFormatException;
+
 
 class BankAccountTest {
 
@@ -13,12 +15,9 @@ class BankAccountTest {
         
         BankAccount bankAccount2 = new BankAccount("b@c.com", 0);
         assertEquals(0, bankAccount2.getBalance(), 0.001); // *Boarder Case* - No money in account, should return 0
-        
-        BankAccount bankAccount3 = new BankAccount("c@d.com", -20); // *Boarder Case* - Negative Balance in Account
-        assertEquals(-20, bankAccount3.getBalance(), 0.001);
 
-        BankAccount bankAccount4 = new BankAccount("d@e.com", 18.20);
-        assertEquals(18.20, bankAccount4.getBalance(), 0.001); // *Boarder Case* - Balance with decimal
+        BankAccount bankAccount3 = new BankAccount("d@e.com", 18.20);
+        assertEquals(18.20, bankAccount3.getBalance(), 0.001); // *Boarder Case* - Balance with decimal
     }
 
     @Test
