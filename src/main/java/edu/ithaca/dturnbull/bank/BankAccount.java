@@ -38,6 +38,12 @@ public class BankAccount {
         if (amount < 0){
             return false;
         }
+        /* Used the inbuilt java method BigDecimal.scale to see if the number 
+        has more than 2 decimals. For zero or positive values, the scale is the 
+        number of digits to the right of the decimal point. For negative value, 
+        the unscaled value of the number is multiplied by ten to the power of 
+        the negation of the scale. 
+        */
         else if (BigDecimal.valueOf(amount).scale() > 2){
             return false;
         }
@@ -54,7 +60,7 @@ public class BankAccount {
     public void withdraw (double amount) throws InsufficientFundsException{
         boolean val = isAmountValid(amount);
         if(val == true){
-            if(amount < balance){
+            if(amount <= balance){
                 balance -= amount;
             }
             else {
